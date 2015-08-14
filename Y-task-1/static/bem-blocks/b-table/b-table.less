@@ -1,0 +1,51 @@
+
+.b-table {
+    display: table;
+    border: 1px solid #cbcbcb;
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    
+    &__head { 
+        display: table-header-group;
+        background-color: #e0e0e0;
+        border-bottom: 1px solid #cbcbcb;
+        color: #000;
+        text-align: left;
+        vertical-align: bottom;
+    }
+
+    &__foot {
+        display: table-caption;
+        caption-side: bottom;
+        margin-top: -1px;
+        padding: 20px;
+        border: 1px solid #cbcbcb;
+        background-color: #FFF;
+        color: #000;
+        text-align: center;
+        vertical-align: bottom;
+    }
+
+    &__body { 
+        display: table-row-group;
+    }
+
+    &__row {
+        display: table-row;
+    }
+
+    &__cell {
+        display: table-cell;
+        margin: 0;
+        padding: 5px 12px 6px;
+        border-left: 1px solid #cbcbcb;
+        background-color: transparent;
+        overflow: visible;
+        vertical-align: middle;
+        
+        &:first-child  {
+            border-left-width: 0;
+        }
+    }
+}

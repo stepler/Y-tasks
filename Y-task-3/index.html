@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Y-task 3. WebAudio Pleer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/vendor/twbs/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>WebAudio</h1>
+      
+      <div id="webaudioplayer"></div>
+
+      <script type="template/html" id="webaudioplayer-template">
+        <div class="well well-drop js-dropzone">
+          <input type="file" multiple class="select-files js-select" /> 
+          Select or drop files here <span class="glyphicon glyphicon-music"></span>
+        </div>
+        <div class="form-group">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary js-player-prev">
+              <span class="glyphicon glyphicon-fast-backward"></span>
+            </button>
+            <button type="button" class="btn btn-primary js-player-play">
+              <span class="glyphicon glyphicon-play"></span>
+            </button>
+            <span class="btn btn-primary disabled js-player-preload" style="display:none">
+              <span class="glyphicon glyphicon-refresh"></span>
+            </span>
+            <button type="button" class="btn btn-primary js-player-pause" style="display:none">
+              <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            <button type="button" class="btn btn-primary js-player-next">
+              <span class="glyphicon glyphicon-fast-forward"></span>
+            </button>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-success dropdown-toggle js-equalizer-btn">
+                EQ: <span class="js-equalizer-value"></span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu js-equalizer-list" style="display:none">
+                <li><a href="javascript:void(0)" data-type="normal">Normal</a></li>
+                <li><a href="javascript:void(0)" data-type="rock">Rock</a></li>
+                <li><a href="javascript:void(0)" data-type="jazz">Jazz</a></li>
+                <li><a href="javascript:void(0)" data-type="classic">Classic</a></li>
+                <li><a href="javascript:void(0)" data-type="pop">Pop</a></li>
+              </ul>
+            </div>
+          </div>
+          &nbsp;&nbsp;<span class="js-player-info">...</span>
+        </div>
+        <div class="well">
+          <div class="waveform">
+            <canvas class="js-waveform-canvas1"></canvas>
+            <div class="js-waveform-timer">
+              <canvas class="js-waveform-canvas2"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script src="static/vendor/aadsm/JavaScript-ID3-Reader/id3.min.js"></script>
+    <script src="static/js/web-audio-player.js"></script>
+
+    <!-- GO-GO-GO -->
+    <script>(new WebAudioPlayer('webaudioplayer', 'webaudioplayer-template'))</script>
+  </body>
+</html>

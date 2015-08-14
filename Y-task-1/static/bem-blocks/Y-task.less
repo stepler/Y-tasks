@@ -1,0 +1,74 @@
+/**********************************
+ * Реализация требований по заданию
+ *********************************/
+
+/**
+ * Sticky-шапка таблицы.
+ * Этот подход не сработал. Не успел отдебажить =(
+ */
+.b-filter__label, .b-filter__title,
+.b-table__head {
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 1px;
+}
+
+/**
+ * Выделение активной строки и столбца.
+ * Сделан абсолютным хаком. 
+ * Не додумался до другого работающего способа выделения столбца через CSS.
+ */
+.b-table__wrap {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABUCAYAAABDVl3NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5JREFUeNpi+PTp038mBiAYLgTD////GYaVjwACDAA2Dwd3AzOx8gAAAABJRU5ErkJggg==');
+    background-repeat: repeat;
+}
+.b-table__head, .b-table__row { 
+    height: 42px;
+}
+.b-table {
+    position: relative;
+    z-index: 1;
+}
+.b-table__cell {
+    position: relative;
+}
+.b-table__body .b-table__row:hover .b-table__cell {
+    background: #CBCBCB;
+
+    &:hover {
+        position: relative;
+        &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -99999px;
+            bottom: -99999px;
+            background: #CBCBCB;
+            z-index: -1;
+        }
+    }
+}
+
+/**
+ * Фильтрация рейсов.
+ */
+.b-filter__checkbox {
+    
+    & ~ .b-table__wrap .b-table__body .b-table__row {
+        display: none;
+    }
+
+    &:checked[value="depart"] ~ .b-table__wrap .b-table__body .b-table__row[data-type="depart"],
+    &:checked[value="arrival"] ~ .b-table__wrap .b-table__body .b-table__row[data-type="arrival"] {
+        display: table-row;
+    }
+
+    &:checked[value="depart"] ~ .b-table__wrap .b-table__foot,
+    &:checked[value="arrival"] ~ .b-table__wrap .b-table__foot {
+        display: none !important;
+    }
+}

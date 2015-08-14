@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="">
+  <head>
+    <meta charset="utf-8">
+    <title>1</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/style.min.css">
+  </head>
+  <body>
+    <div class="b-container">
+      <span class="b-filter__title">Показать:</span>
+      <input class="b-filter__checkbox" id="filter-depart" type="checkbox" checked value="depart">
+      <label class="b-filter__label" for="filter-depart">Вылет</label>
+      <input class="b-filter__checkbox" id="filter-arrival" type="checkbox" checked value="arrival">
+      <label class="b-filter__label" for="filter-arrival">Прилёт</label>
+      <div id="online-tablo" class="b-table__wrap"></div>
+    </div>
+    <div id="tablo-info"></div>
+
+    <script type="text/html" id="online_tablo_tpl">
+      <div class="b-table">
+      <% var i, item; %>
+      <div class="b-table__head">
+        <div class="b-table__row">
+          <div class="b-table__cell">Тип рейса</div>
+          <div class="b-table__cell">Номер рейса</div>
+          <div class="b-table__cell">Авиакомпания</div>
+          <div class="b-table__cell">Тип возд. судна</div>
+          <div class="b-table__cell">Аэропорт</div>
+          <div class="b-table__cell">Плановое время вылета/прилета</div>
+          <div class="b-table__cell">Статус рейса</div>
+          <div class="b-table__cell">Примечание</div>
+        </div>
+      </div>
+      <div class="b-table__body">
+        <% for (i in list) { %>
+          <% item = list[i]; %>
+          <a href="#i<%= i %><%= item.N %>" class="b-table__row" data-type="<%= item.type %>">
+            <div class="b-table__cell"><%= item.type %></div>
+            <div class="b-table__cell"><%= item.N %></div>
+            <div class="b-table__cell"><%= item.company.name %></div>
+            <div class="b-table__cell"><%= item.plane[0] %></div>
+            <div class="b-table__cell"><%= item.from_to[0] %></div>
+            <div class="b-table__cell"><%= item.time %></div>
+            <div class="b-table__cell"><%= item.status %></div>
+            <div class="b-table__cell"><%= item.info %></div>
+          </a>
+        <% } %>
+      </div>
+      <div class="b-table__foot">
+        Выберите фильтр
+      </div>
+      </div>
+    </script>
+
+    <script type="text/html" id="info_modal_tpl">
+      <% var i, item; %>
+      <% for (i in list) { %>
+        <% item = list[i]; %>
+        <div class="b-modal" id="i<%= i %><%= item.N %>" style="display:none;">
+          <a href="#" class="b-modal__overlay"></a>
+          <div class="b-modal__content">
+            <a href="#" class="b-modal__close">&times;</a>
+            <dl class="b-kvlist">
+              <dd class="b-kvlist__key">Тип рейса</dd>
+              <dt class="b-kvlist__value"><%= item.type %></dt>
+
+              <dd class="b-kvlist__key">Номер рейса</dd>
+              <dt class="b-kvlist__value"><%= item.N %></dt>
+
+              <dd class="b-kvlist__key">Авиакомпания</dd>
+              <dt class="b-kvlist__value"><%= item.company.name %></dt>
+
+              <dd class="b-kvlist__key">Тип возд. судна</dd>
+              <dt class="b-kvlist__value"><%= item.plane[0] %></dt>
+
+              <dd class="b-kvlist__key">Аэропорт</dd>
+              <dt class="b-kvlist__value"><%= item.from_to[0] %></dt>
+
+              <dd class="b-kvlist__key">Плановое время вылета/прилета</dd>
+              <dt class="b-kvlist__value"><%= item.time %></dt>
+
+              <dd class="b-kvlist__key">Статус рейса</dd>
+              <dt class="b-kvlist__value"><%= item.status %></dt>
+
+              <dd class="b-kvlist__key">Примечание</dd>
+              <dt class="b-kvlist__value"><%= item.info %></dt>
+            </dl>
+          </div>
+        </div>
+      <% } %>
+    </script>
+
+    <script src="/static/js/script.js"></script>
+  </body>
+</html>

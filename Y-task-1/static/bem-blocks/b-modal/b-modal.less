@@ -1,0 +1,54 @@
+
+.b-modal {
+    display: none;
+    
+    &:target {
+        display: block !important;
+    }
+
+    &__overlay {
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        cursor: default;
+    }
+
+    &__content {
+        position: fixed;
+        z-index: 100;
+        left: 50%;
+        top: 10%;
+        margin-left: -200px;
+        width: 400px;
+        max-height: 80%;
+        padding: 20px;
+        background: #FFF;
+    }
+
+    &__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        width: 20px;
+        height: 20px;
+        padding: 10px;
+        font-size: 20px;
+        line-height: 20px;
+        text-align: center;
+        
+        &, &:link, &:visited {
+            color: #666;
+            text-decoration: none;
+        }
+
+        &:hover {
+            color: #333;
+            text-decoration: none;
+        }
+    }
+}
